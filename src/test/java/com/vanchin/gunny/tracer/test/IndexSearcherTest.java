@@ -26,12 +26,18 @@ public class IndexSearcherTest {
 
         List<Target> list1 = searcher.search(getParam1());
         print(list1);
+        List<Target> list1_1 = searcher.search(PersonEnum.types(),getParam1());
+        print(list1_1);
 
         List<Target> list2 = searcher.search(getParam2());
         print(list2);
+        List<Target> list2_1 = searcher.search(PersonEnum.types(),getParam2());
+        print(list2_1);
 
         List<Target> list3 = searcher.search(getParam3());
         print(list3);
+        List<Target> list3_1 = searcher.search(PersonEnum.types(),getParam3());
+        print(list3_1);
     }
 
     private List<Direction<Target>> getParam1() {
