@@ -14,14 +14,14 @@ import java.util.List;
 import javafx.util.Pair;
 
 /**
- * @author wangqing21
+ * @author vanchin
  * @date 2019/3/20 11:29
  */
 public class IndexSearcherTest {
     @Test
     public void testSearch() {
-        Pair<List<Direction<Target>>, List<Target>> testData = getTestData();
-        Index index = new Index(testData.getKey(), testData.getValue());
+        Pair<List<Target>, List<Direction<Target>>> testData = getTestData();
+        Index index = new Index(PersonEnum.types(), testData.getKey(), testData.getValue());
         IndexSearcher searcher = SearcherFactory.newSearcher(index);
 
         List<Target> list1 = searcher.search(getParam1());
@@ -34,7 +34,7 @@ public class IndexSearcherTest {
         print(list3);
     }
 
-    private List<Direction<Target>> getParam1(){
+    private List<Direction<Target>> getParam1() {
 
         Direction<Target> d1 = new Direction<Target>(PersonEnum.AGE.getType(), "23");
 
@@ -45,7 +45,7 @@ public class IndexSearcherTest {
         return directionList;
     }
 
-    private List<Direction<Target>> getParam2(){
+    private List<Direction<Target>> getParam2() {
 
         Direction<Target> d1 = new Direction<Target>(PersonEnum.AGE.getType(), "24");
         Direction<Target> d2 = new Direction<Target>(PersonEnum.HANDSOME.getType(), "1");
@@ -62,7 +62,7 @@ public class IndexSearcherTest {
         return directionList;
     }
 
-    private List<Direction<Target>> getParam3(){
+    private List<Direction<Target>> getParam3() {
 
         Direction<Target> d1 = new Direction<Target>(PersonEnum.WEALTH.getType(), "100W");
 
@@ -72,17 +72,17 @@ public class IndexSearcherTest {
         return directionList;
     }
 
-    private void print(List<Target> list){
-        if(list == null || list.isEmpty()){
+    private void print(List<Target> list) {
+        if (list == null || list.isEmpty()) {
             System.out.println("result is empty");
             return;
         }
-        for(Target t : list){
+        for (Target t : list) {
             System.out.println(t.toString());
         }
     }
 
-    private Pair<List<Direction<Target>>, List<Target>> getTestData(){
+    private Pair<List<Target>, List<Direction<Target>>> getTestData() {
         Tag tag1 = new Tag(1, "小鲜肉");
         Tag tag2 = new Tag(2, "高富帅");
         Tag tag3 = new Tag(3, "高大魁梧");
@@ -136,7 +136,7 @@ public class IndexSearcherTest {
         directionList.add(d17);
         directionList.add(d18);
 
-        Pair pair = new Pair(directionList, tagList);
+        Pair pair = new Pair(tagList, directionList);
         return pair;
     }
 }

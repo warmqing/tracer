@@ -10,40 +10,44 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author wangqing21
+ * @author vanchin
  * @date 2019/3/19 17:47
  */
 public class IndexSearcher {
     private Index index;
 
-    public IndexSearcher(Index index){
+    public IndexSearcher(Index index) {
         this.index = index;
     }
 
     public List<Target> search(List<Direction<Target>> directions) {
         List<BitSet> bitSetList = new ArrayList<BitSet>();
         for (Direction direction : directions) {
-            String dName = direction.getName();
+            String dType = direction.getType();
             String dValue = direction.getValue();
 
-            Map<String, BitSet> map = index.getBitSetMap().get(dName);
-            if (map == null) {
+            Map<String, BitSet> valueMap = index.getBitSetMap().get(dType);
+            if (valueMap == null) {
                 continue;
             }
-            BitSet b = map.get(dValue);
-            if (b == null) {
-                return null;
-            } else {
-                bitSetList.add(b);
+
+            BitSet nlbs = valueMap.get(Index.NO_LIMIT);
+            BitSet bs = valueMap.get(dValue);
+
+            BitSet nlbs_clone = (BitSet) nlbs.clone();
+
+            if (bs != null) {
+                nlbs_clone.or(bs);
             }
+
+            bitSetList.add(nlbs_clone);
         }
         if (bitSetList.isEmpty()) {
             return null;
         }
-        BitSet res_0 = bitSetList.get(0);
-        BitSet res = (BitSet) res_0.clone();
-        for (BitSet b : bitSetList) {
-            res.and(b);
+        BitSet res = bitSetList.get(0);
+        for (BitSet bs : bitSetList) {
+            res.and(bs);
         }
 
         List<Target> targets = new ArrayList<Target>();

@@ -1,22 +1,22 @@
 package com.vanchin.gunny.tracer.index;
 
 /**
- * @author wangqing21
+ * @author vanchin
  * @date 2019/3/13 14:43
  */
 public class Direction<T> {
     private T target;
-    private String name;
+    private String type;
     private String value;
 
     public Direction(T target, String name, String value){
         this.target = target;
-        this.name = name;
+        this.type = name;
         this.value = value;
     }
 
     public Direction(String name, String value){
-        this.name = name;
+        this.type = name;
         this.value = value;
     }
 
@@ -24,8 +24,8 @@ public class Direction<T> {
         return target;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
     public String getValue() {

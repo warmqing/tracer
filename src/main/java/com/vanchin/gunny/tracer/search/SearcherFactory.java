@@ -3,7 +3,7 @@ package com.vanchin.gunny.tracer.search;
 import com.vanchin.gunny.tracer.index.Index;
 
 /**
- * @author wangqing21
+ * @author vanchin
  * @date 2019/3/19 19:39
  */
 public class SearcherFactory {

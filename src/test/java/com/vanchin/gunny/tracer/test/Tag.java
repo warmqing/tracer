@@ -3,7 +3,7 @@ package com.vanchin.gunny.tracer.test;
 import com.vanchin.gunny.tracer.index.Target;
 
 /**
- * @author wangqing21
+ * @author vanchin
  * @date 2019/3/20 11:33
  */
 public class Tag implements Target {
