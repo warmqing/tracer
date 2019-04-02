@@ -52,7 +52,7 @@ public class IndexSearcherTest {
     }
 
     private List<Direction<Target>> getParam2() {
-
+        //test
         Direction<Target> d1 = new Direction<Target>(PersonEnum.AGE.getType(), "24");
         Direction<Target> d2 = new Direction<Target>(PersonEnum.HANDSOME.getType(), "1");
         Direction<Target> d3 = new Direction<Target>(PersonEnum.HEIGHT.getType(), "183");
